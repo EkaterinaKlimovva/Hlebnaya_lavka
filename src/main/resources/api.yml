@@ -1,0 +1,456 @@
+openapi: 3.0.3
+info:
+  title: Хлебная лавка
+  description: Магазин хлебобулочных изделий
+  version: 0.0.1
+servers:
+  - url: http://localhost:8081
+tags:
+  - name: menu
+    description: методы для работы с меню
+  - name: purchase
+    description: методы для работы с заказами
+  - name: customer
+    description: методы для работы с покупателями
+
+paths:
+  /menu:
+    get:
+      tags:
+        - menu
+      summary: Получение всех изделий в меню
+      description: Получение всех изделий в меню
+      operationId: getMenu
+      responses:
+        '200':
+          description: Все изделия в меню успешно получены
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+    post:
+      tags:
+        - menu
+      summary: Добавление новой позиции в меню
+      description: Добавление новой позиции в меню
+      operationId: addItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddItemRequest'
+      responses:
+        '200':
+          description: Новая позиция добавлена
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+    patch:
+      tags:
+        - menu
+      summary: Изменение стоимости позиции
+      description: Изменение стоимости позиции
+      operationId: updateCostItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCostItemRequest'
+      responses:
+        '200':
+          description: Стоимость позиии успешна изменена
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+    delete:
+      tags:
+        - menu
+      summary: Удалении позиции
+      description: Удалении позиции
+      operationId: deleteItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteItemRequest'
+      responses:
+        '200':
+          description: Позиция успешна удалена
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+    put:
+      tags:
+        - menu
+      summary: Изменение позиции
+      description: Изменение позиции
+      operationId: changeItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuModel'
+      responses:
+        '200':
+          description: Позиция успешна изменена
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+
+  /purchase:
+    post:
+      tags:
+        - purchase
+      summary: Совершение покупки
+      description: Совершение покупки
+      operationId: addPurchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPurchaseRequest'
+      responses:
+        '200':
+          description: Покупка совершена успешно
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PurchaseModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+    get:
+      tags:
+        - purchase
+      summary: Получение покупок в определённый временной промежуток
+      description: Получение покупок в определённый временной промежуток
+      operationId: getFilterPurchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetFilterPurchaseRequest'
+      responses:
+        '200':
+          description: Покупки получены успешно
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PurchaseModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+
+  /customer:
+    get:
+      tags:
+        - customer
+      summary: Получение всех покупателей
+      description: Получение всех покупателей
+      operationId: getAllCustomer
+      responses:
+        '200':
+          description: Все покупатели успешно получены
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PurchaseModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+    patch:
+      tags:
+        - purchase
+      summary: Изменение имени покупателя
+      description: Изменение имени покупателя
+      operationId: changeNameCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeNameCustomerRequest'
+      responses:
+        '200':
+          description: Имя покупателя изменено успешно
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+    post:
+      tags:
+        - purchase
+      summary: Добавление нового покупателя
+      description: Добавление нового покупателя
+      operationId: addCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddCustomerRequest'
+      responses:
+        '200':
+          description: Новый покупатель успешно добавлен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
+
+components:
+  schemas:
+    MenuModel:
+      title: "MenuModel"
+      description: Модель для работы с позициями в меню
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 101
+          description: ID позиции в меню
+        name:
+          type: string
+          example: Бублик
+          description: Наименование позиции
+        cost:
+          type: number
+          format: double
+          example: 150.5
+          description: Стоимость позиции
+
+    PurchaseModel:
+      title: "PurchaseModel"
+      description: Модель для работы с совершенными покупками
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+          description: ID совершенной покупки
+        customerId:
+          type: integer
+          format: int64
+          example: 101
+          description: ID покупателя
+        itemId:
+          type: integer
+          format: int64
+          example: 101
+          description: ID позиции в меню
+        count:
+          type: integer
+          format: int64
+          example: 2
+          description: Количество покупаемых позиций
+        sumCost:
+          type: number
+          format: double
+          example: 200.45
+          description: Итоговая стоимость
+        datePurchase:
+          type: string
+          format: date
+          example: 2024-11-04
+          description: Дата совершения покупки
+
+    CustomerModel:
+      title: "CustomerModel"
+      description: Модель для работы с покупателями
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 101
+          description: ID покупателя
+        name:
+          type: string
+          example: Человечков Человечек
+          description: Имя покупателя
+        sumCost:
+          type: number
+          format: double
+          example: 200.45
+          description: Общая сумма купленных за все время позиций
+
+
+    UpdateCostItemRequest:
+      title: "UpdateCostItemRequest"
+      description: Запрос для обновления позиции в меню
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 101
+          description: ID позиции в меню
+        cost:
+          type: number
+          format: double
+          example: 150.5
+          description: Стоимость позиции
+
+    AddItemRequest:
+      title: "AddItemRequest"
+      description: Запрос на создание новой позиции
+      type: object
+      properties:
+        name:
+          type: string
+          example: Бублик
+          description: Наименование позиции
+        cost:
+          type: number
+          format: double
+          example: 150.5
+          description: Стоимость позиции
+
+    DeleteItemRequest:
+      title: "DeleteItemRequest"
+      description: Запрос на удаление позиции из меню
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 101
+          description: ID позиции в меню
+
+
+    AddPurchaseRequest:
+      title: "AddPurchaseRequest"
+      description: Запрос на совершение покупки
+      type: object
+      properties:
+        customerId:
+          type: integer
+          format: int64
+          example: 101
+          description: ID покупателя
+        itemId:
+          type: integer
+          format: int64
+          example: 101
+          description: ID позиции в меню
+        count:
+          type: integer
+          format: int64
+          example: 2
+          description: Количество покупаемых позиций
+
+    GetFilterPurchaseRequest:
+      title: "GetFilterPurchaseRequest"
+      description: Запрос на фильтр заказов
+      type: object
+      properties:
+        startDate:
+          type: string
+          format: date
+          example: 2024-10-04
+          description: Дата начала фильтра
+        endDate:
+          type: string
+          format: date
+          example: 2024-10-04
+          description: Дата окончания фильтра
+
+
+    AddCustomerRequest:
+      title: "AddCustomerRequest"
+      description: Запрос для добавления нового покупателя
+      type: object
+      properties:
+        name:
+          type: string
+          example: Человечков Человечек
+          description: Имя покупателя
+
+    ChangeNameCustomerRequest:
+      title: "ChangeNameCustomerRequest"
+      description: Модель для изменения имени покупателя
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 101
+          description: ID покупателя
+        name:
+          type: string
+          example: Человечков Человечек
+          description: Имя покупателя
