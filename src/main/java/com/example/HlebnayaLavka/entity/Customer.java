@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,4 +25,7 @@ public class Customer {
 
     @Column(name = "sum_cost")
     Double sumCost;
+
+    @OneToMany(mappedBy = "customer")
+    List<Purchase> purchases;
 }

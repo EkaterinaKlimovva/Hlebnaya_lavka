@@ -221,7 +221,7 @@ paths:
 
     patch:
       tags:
-        - purchase
+        - customer
       summary: Изменение имени покупателя
       description: Изменение имени покупателя
       operationId: changeNameCustomer
@@ -246,7 +246,7 @@ paths:
 
     post:
       tags:
-        - purchase
+        - customer
       summary: Добавление нового покупателя
       description: Добавление нового покупателя
       operationId: addCustomer
