@@ -1,7 +1,6 @@
 package com.example.HlebnayaLavka.service;
 
 import com.example.HlebnayaLavka.constants.ServiceConstants;
-import com.example.HlebnayaLavka.controllers.api.PurchaseApiDelegate;
 import com.example.HlebnayaLavka.entity.Customer;
 import com.example.HlebnayaLavka.entity.Menu;
 import com.example.HlebnayaLavka.entity.Purchase;
@@ -20,7 +19,7 @@ import java.util.List;
 @Service
 //@RequiredArgsConstructor
 //@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class PurchaseService implements PurchaseApiDelegate {
+public class PurchaseService {
 
     private final PurchaseRepository purchaseRepository;
 

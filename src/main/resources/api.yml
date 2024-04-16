@@ -135,6 +135,31 @@ paths:
 
 
   /purchase:
+    post:
+      tags:
+        - purchase
+      summary: Совершение покупки
+      description: Совершение покупки
+      operationId: addPurchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPurchaseRequest'
+      responses:
+        '200':
+          description: Покупка совершена успешно
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseModel'
+        '400':
+          description: 400 Bad Request ("неправильный, некорректный запрос)
+        '404':
+          description: 404 Not Found ("не найдено")
+        '500':
+          description: Internal Server Error ("внутрення ошибка сервера")
+
     get:
       tags:
         - purchase
@@ -155,30 +180,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PurchaseModel'
-        '400':
-          description: 400 Bad Request ("неправильный, некорректный запрос)
-        '404':
-          description: 404 Not Found ("не найдено")
-        '500':
-          description: Internal Server Error ("внутрення ошибка сервера")
-    post:
-      tags:
-        - purchase
-      summary: Совершение покупки
-      description: Совершение покупки
-      operationId: addPurchase
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AddPurchaseRequest'
-      responses:
-        '200':
-          description: Покупка совершена успешно
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PurchaseModel'
         '400':
           description: 400 Bad Request ("неправильный, некорректный запрос)
         '404':
