@@ -160,17 +160,18 @@
 								${project.basedir}/src/main/resources/api.yml
 							</inputSpec>
 							<generatorName>spring</generatorName>
-							<apiPackage>com.example.HlebnayaLavka.controller.api</apiPackage>
+							<apiPackage>com.example.HlebnayaLavka.controllers.api</apiPackage>
 							<modelPackage>com.example.HlebnayaLavka.model.dto</modelPackage>
+							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
 							<supportingFilesToGenerate>
 								ApiUtil.java
 							</supportingFilesToGenerate>
 							<configOptions>
-								<delegatePatern>true</delegatePatern>
 								<additionalModelTypeAnnotation>
 									@lombok.NoArgsConstructor
 									@lombok.AllArgsConstructor
 								</additionalModelTypeAnnotation>
+								<delegatePattern>true</delegatePattern>
 							</configOptions>
 						</configuration>
 					</execution>
