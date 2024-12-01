@@ -3,12 +3,13 @@ package com.example.HlebnayaLavka.service;
 import com.example.HlebnayaLavka.entity.Customer;
 import com.example.HlebnayaLavka.model.dto.AddCustomerRequest;
 import com.example.HlebnayaLavka.model.dto.ChangeNameCustomerRequest;
+import com.example.HlebnayaLavka.model.dto.CustomerModel;
 import com.example.HlebnayaLavka.repository.CustomerRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.HlebnayaLavka.model.dto.CustomerModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CustomerService {
 
+    @Autowired
     CustomerRepository customerRepository;
 
     public List<CustomerModel> getAllCustomer() {

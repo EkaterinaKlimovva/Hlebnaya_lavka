@@ -9,6 +9,7 @@ import com.example.HlebnayaLavka.repository.MenuRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class MenuService {
 
+    @Autowired
     MenuRepository menuRepository;
 
     public List<MenuModel> getMenu() {

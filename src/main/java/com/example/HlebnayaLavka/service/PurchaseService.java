@@ -10,6 +10,7 @@ import com.example.HlebnayaLavka.model.dto.PurchaseModel;
 import com.example.HlebnayaLavka.repository.CustomerRepository;
 import com.example.HlebnayaLavka.repository.MenuRepository;
 import com.example.HlebnayaLavka.repository.PurchaseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,10 +22,13 @@ import java.util.List;
 //@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PurchaseService {
 
+    @Autowired
     private final PurchaseRepository purchaseRepository;
 
+    @Autowired
     private final CustomerRepository customerRepository;
 
+    @Autowired
     private final MenuRepository menuRepository;
 
     public PurchaseService(PurchaseRepository purchaseRepository, CustomerRepository customerRepository, MenuRepository menuRepository) {
